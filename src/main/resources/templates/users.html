@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="layouts/defaultLayout" xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content" class="container-xl">
+    <h2 th:text="${title}"></h2>
+
+    <a th:href="@{/users/newUser}" class="btn btn-success">New</a>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Weight</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.weight}"></td>
+            <td>
+                <form action="#" th:action="@{/users/editForm}" th:object="${user}" method="post">
+                    <input name="id" type="hidden" th:value="${user.id}">
+                    <input name="name" type="hidden" th:value="${user.name}">
+                    <input name="age" type="hidden" th:value="${user.age}">
+                    <input name="weight" type="hidden" th:value="${user.weight}">
+                    <button class="btn btn-secondary" type="submit" name="EditItem">Edit</button>
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/users/delete}" th:object="${user}" method="post">
+                    <input name="id" type="hidden" th:value="${user.id}">
+                    <input name="name" type="hidden" th:value="${user.name}">
+                    <input name="age" type="hidden" th:value="${user.age}">
+                    <input name="weight" type="hidden" th:value="${user.weight}">
+                    <button class="btn btn-danger" type="submit" name="DeleteItem">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</html>

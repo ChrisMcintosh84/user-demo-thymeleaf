@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="layouts/defaultLayout" xmlns:th="http://www.thymeleaf.org">
+
+<div layout:fragment="content" class="container-xl mt-3 mb-3">
+    <h2>New User</h2>
+    <form action="#" th:action="@{/users/addUser}" th:object="${user}" method="post">
+        <div class="mb-3">
+            <label for="inputName" class="form-label">Name</label>
+            <input type="text" class="form-control" th:field="*{name}" id="inputName" placeholder="Name">
+            <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="inputAge" class="form-label">Age</label>
+            <input type="number" class="form-control" th:field="*{age}" id="inputAge" placeholder="Age">
+            <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+        </div>
+        <div class="mb-3">
+            <label for="inputWeight" class="form-label">Weight</label>
+            <input type="number" step="0.01" class="form-control" th:field="*{weight}" id="inputWeight" placeholder="Weight">
+            <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a th:href="@{/users/}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</html>
